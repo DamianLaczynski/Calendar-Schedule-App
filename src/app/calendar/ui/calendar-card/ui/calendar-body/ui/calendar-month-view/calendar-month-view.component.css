@@ -1,0 +1,6 @@
+.row-height {
+    height: calc((1 / 8) *100vh)
+  }
+.colorWhite {
+  color: white;
+}

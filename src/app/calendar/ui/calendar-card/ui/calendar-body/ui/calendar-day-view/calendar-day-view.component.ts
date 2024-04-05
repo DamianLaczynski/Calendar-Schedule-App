@@ -4,8 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-calendar-day-view',
   standalone: true,
   imports: [],
-  templateUrl: './calendar-day-view.component.html',
-  styleUrl: './calendar-day-view.component.css'
+  templateUrl: './calendar-day-view.component.html'
 })
 export class CalendarDayViewComponent {
 
