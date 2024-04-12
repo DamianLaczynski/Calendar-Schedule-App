@@ -6,12 +6,14 @@ import {
 import { Day } from '../model/day';
 import { DaysCreatorService } from '../services/days-creator.service';
 import { TitleTransformerService } from '../services/title-transformer.service';
+import { CalendarEvent } from '../model/calendar-event';
 
 type CalendarConfigState = {
   viewType: CalendarViewType;
   date: Date;
   title?: string | null;
   days?: Day[][];
+  events: CalendarEvent[];
 };
 
 @Injectable({
@@ -26,7 +28,8 @@ export class CalendarConfigStateService {
     viewType: CALENDAR_VIEW_TYPE.MONTH_VIEW,
     date: new Date(Date.now()),
     title: '',
-    days: this.daysCreator.createDaysForMonth(new Date(Date.now()))
+    days: this.daysCreator.createDaysForMonth(new Date(Date.now())),
+    events: []
   });
 
   $value = this.state.asReadonly();
@@ -54,6 +57,16 @@ export class CalendarConfigStateService {
     });
     this.updateCalendarTitle();
     this.updateCalendarDays();
+  }
+
+  setCalendarEvents(value: CalendarEvent[])
+  {
+    this.state.update((state) => {
+      return {
+        ...state,
+        events: value
+      };
+    });
   }
 
   private updateCalendarTitle() {
